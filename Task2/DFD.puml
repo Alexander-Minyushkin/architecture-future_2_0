@@ -1,0 +1,35 @@
+@startuml
+
+actor "Клиенты" as Customer
+actor "Медицинский персонал" as MedicalStaff
+actor "ML engineers" as ML_engineers
+actor "Бухгалтера,финансисты" as finance
+actor "HR" as HR
+
+rectangle "Данные по клиентам." as client_data #red
+rectangle "Медицинская деятельность / Услуги" as medical_data #red
+rectangle "Финансы / Бухгалтерия" as finance_data #red
+rectangle "Персонал / HR" as HR_data #red
+rectangle "Инвентарь / Материальные ресурсы" as inventory #lightyellow
+rectangle "Аналитика / Отчёты" as reports #lightyellow
+rectangle "ML модели" as ML_models #lightyellow
+
+
+Customer --> client_data 
+MedicalStaff --> client_data
+MedicalStaff --> medical_data
+MedicalStaff --> inventory
+ML_engineers --> ML_models
+finance --> finance_data
+
+HR --> HR_data
+
+
+client_data --> reports : обезличенные данные клиентов
+medical_data--> reports : обезличенные данные клиентов
+inventory --> reports
+ML_models --> reports
+finance_data --> reports
+HR_data --> reports
+
+@enduml
